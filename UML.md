@@ -1,87 +1,113 @@
-# CLASSES E ESTRUTURAS
+# UML Textual
 
-## Classe: Jogo (Classe Base)
+## Classe: `Jogo` (Classe Base)
 
-Atributos:
-- titulo: str
-- genero: str
-- plataforma: str
-- horas_jogadas: float
-- status: str
-- nota: float
-- data_inicio: date
-- data_termino: date
-- ano_lancamento: int
+### Atributos
 
-Métodos:
-+ registrar_progresso(horas: float)
-+ finalizar_jogo() 
-+ reiniciar_jogo() 
-+ avaliar(nota: float) 
+* `- titulo: str`
+* `- genero: str`
+* `- plataforma: str`
+* `- horas_jogadas: float`
+* `- status: str`
+* `- nota: float`
+* `- data_inicio: date`
+* `- data_termino: date`
+* `- ano_lancamento: int`
 
-### Classe: JogoCampanha (herda de Jogo)
+### Métodos
 
-Atributos:
-- missoes_totais: int
-- missoes_concluidas: int
-- percentual_conclusao: float
+* `+ registrar_progresso(horas: float)`
+* `+ finalizar_jogo()`
+* `+ reiniciar_jogo()`
+* `+ avaliar(nota: float)`
 
-Métodos:
-+ atualizar_progresso(missoes: int)
+---
 
-### Classe: JogoCompetitivo (herda de Jogo)
+## Classe: `JogoCampanha` (herda de `Jogo`)
 
-Atributos:
-- partidas_jogadas: int
-- vitorias: int
-- derrotas: int
-- ranking: int
-- winrate: int
+### Atributos
 
-Métodos:
-+ registrar_partida()
-+ calcular_winrate()
+* `- missoes_totais: int`
+* `- missoes_concluidas: int`
+* `- percentual_conclusao: float`
 
-### Classe: JogoCooperativo (herda de Jogo)
+### Métodos
 
-Atributos:
-- jogadores_max: int
-- sessoes_cooperativas: int
-- participantes_frequentes: List[str]
+* `+ atualizar_progresso(missoes: int)`
 
-Métodos:
-+ registrar_sessao_coop(participantes: List[str]) -> None
-+ adicionar_participante(nome: str) -> None
+---
 
-### Classe: Colecao
+## Classe: `JogoCompetitivo` (herda de `Jogo`)
 
-Atributos:
-- nome_colecao: str
-- jogos: List[Jogo]
+### Atributos
 
-Métodos:
-+ adicionar_jogo(jogo: Jogo) 
-+ remover_jogo(jogo: Jogo)
-+ filtrar_por() 
-+ ordenar_por(criterio: str)
+* `- partidas_jogadas: int`
+* `- vitorias: int`
+* `- derrotas: int`
+* `- ranking: int`
+* `- winrate: int`
 
-### Classe: Usuario
+### Métodos
 
-Atributos:
-- nome: str
-- colecoes: Dict[str, Colecao]
+* `+ registrar_partida()`
+* `+ calcular_winrate()`
 
-Métodos:
-+ criar_colecao(nome: str) 
-+ remover_colecao(nome: str) 
+---
 
-### Classe: Relatorio
+## Classe: `JogoCooperativo` (herda de `Jogo`)
 
-Atributos:
-- total_horas: float
-- media_nota_jogos: float
-- percentual_status: float
-- top_5_jogados: list[Jogo]
+### Atributos
 
-Métodos:
-+ gerar_relatorio()
+* `- jogadores_max: int`
+* `- num_sessoes: int`
+* `- participantes_freq: List[str]`
+
+### Métodos
+
+* `+ registrar_sessao(participantes: List[str])`
+* `+ adicionar_participante(nome: str)`
+
+---
+
+## Classe: `Colecao`
+
+### Atributos
+
+* `- nome_colecao: str`
+* `- jogos: List[Jogo]`
+
+### Métodos
+
+* `+ adicionar_jogo(jogo: Jogo)`
+* `+ remover_jogo(jogo: Jogo)`
+* `+ filtrar_por()`
+* `+ ordenar_por(criterio: str)`
+
+---
+
+## Classe: `Usuario`
+
+### Atributos
+
+* `- nome: str`
+* `- colecoes: Dict[str, Colecao]`
+
+### Métodos
+
+* `+ criar_colecao(nome: str)`
+* `+ remover_colecao(nome: str)`
+
+---
+
+## Classe: `Relatorio`
+
+### Atributos
+
+* `- total_horas: float`
+* `- media_nota_jogos: float`
+* `- percentual_status: float`
+* `- top_5_jogados: list[Jogo]`
+
+### Métodos
+
+* `+ gerar_relatorio()`
