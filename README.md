@@ -25,3 +25,8 @@
 | Colecao | nome_colecao, jogos | adicionar_jogo, remover_jogo(), filtrar_por(), ordenar_por() |
 | Usuario | nome, colecoes | criar_colecao, remover_colecao |
 | Relatorio | total_horas, media_nota_jogos, percentual_status, top_5_jogados | gerar_relatorio()|
+
+## UML Textual
+
+- Para melhor organização do README, O UML se encontra no arquivo `UML.md`
+    - [Clique aqui para acessá-lo](UML.md)
