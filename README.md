@@ -22,7 +22,6 @@
 | JogoCampanha | missoes_totais, missoes_concluidas, percentual_conclusao | atualizar_progresso() |
 | JogoCompetitivo |  partidas_jogadas, vitorias, derrotas, ranking, winrate | registrar_partida(), calcular_winrate() |
 | JogoCooperativo | jogadores_max, num_sessoes, participantes_freq | atualizar_info() |
-| Coleção | nome_colecao, jogos | adicionar_jogo, remover_jogo(), filtrar_por(), ordenar_por() |
-| Usuário | nome, colecoes | criar_colecao, remover_colecao |
-| Filtro | plataforma, genero, titulo, horas_jogadas | filtrar_por() |
-| Relatório | total_horas, media_jogos, percentual_status, top_5_jogados | gerar_relatorio()|
+| Colecao | nome_colecao, jogos | adicionar_jogo, remover_jogo(), filtrar_por(), ordenar_por() |
+| Usuario | nome, colecoes | criar_colecao, remover_colecao |
+| Relatorio | total_horas, media_nota_jogos, percentual_status, top_5_jogados | gerar_relatorio()|
