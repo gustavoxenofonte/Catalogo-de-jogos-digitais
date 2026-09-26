@@ -2,25 +2,27 @@
 
 ## Descrição do projeto
 
-- Projeto da disciplina de Programação Orientada a Objetos
+- Projeto desenvolvido para a disciplina de Programação Orientada a Objetos (POO)
 
-- Consiste no desenvolvimento de um catálogo pessoal de jogos digitais que permite:
+- O sistema consiste no desenvolvimento de um catálogo pessoal de jogos digitais que permite:
     - Cadastro de jogos
     - Registro de progresso de jogatina
     - Organização por plataforma ou gênero
-    - Geração de relatórios de desempenho e tempo jogado.
+    - Geração de relatórios de desempenho e tempo jogado
 
 ## Objetivo do projeto
 
-- Aplicar conceitos da disciplina de Programação Orientada a Objetos para aprendizado
+- Aplicar conceitos de POO para aprendizado
 
 ## Estrutura planejada de classes
 
 | Classe | Atributos | Métodos |
 |:-------| :----------:| :--------: |
-| Coleção | jogos | criar_colecao(), visualizar_colecao(), atualizar_colecao() |
-| Jogo | titulo, genero, plataforma, horas jogadas, status, nota | cadastrar_jogo(), atualizar_info(), avaliar() |
-| JogoCampanha | progresso_historia, missoes_concluidas, percentual_conclusao | atualizar_progresso() |
-| JogoCompetitivo |  partidas_jogadas, vitorias, derrotas, ranking, winrate | atualizar() |
-| JogoCooperativo | jogadores_max, num_sessoes, participantes_freq | atualizar() |
-| Relatório | desempenho, tempo jogado | gerar_relatorio(), filtrar_por() |
+| Jogo | titulo, genero, plataforma, horas_jogadas, status, nota, data_inicio, data_fim, ano_lancamento | registrar_progresso(), finalizar_jogo(), reiniciar_jogo(), avaliar() |
+| JogoCampanha | missoes_totais, missoes_concluidas, percentual_conclusao | atualizar_progresso() |
+| JogoCompetitivo |  partidas_jogadas, vitorias, derrotas, ranking, winrate | registrar_partida(), calcular_winrate() |
+| JogoCooperativo | jogadores_max, num_sessoes, participantes_freq | atualizar_info() |
+| Coleção | nome_colecao, jogos | adicionar_jogo, remover_jogo(), filtrar_por(), ordenar_por() |
+| Usuário | nome, colecoes | criar_colecao, remover_colecao |
+| Filtro | plataforma, genero, titulo, horas_jogadas | filtrar_por() |
+| Relatório | total_horas, media_jogos, percentual_status, top_5_jogados | gerar_relatorio()|
