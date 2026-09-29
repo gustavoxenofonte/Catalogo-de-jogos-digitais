@@ -40,6 +40,10 @@
 
 ## Estrutura Planejada de Classes
 
+- As classes se encontram na pasta [classes](classes)
+
+---
+
 | Classe | Atributos | Métodos |
 | :--- | :--- | :--- |
 | **Jogo** | titulo, genero, plataforma, horas_jogadas, status, nota, data_inicio, data_fim, ano_lancamento | registrar_progresso(), finalizar_jogo(), reiniciar_jogo(), avaliar() |
