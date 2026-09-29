@@ -47,7 +47,7 @@
 | **JogoCompetitivo** | partidas_jogadas, vitorias, derrotas, ranking, winrate | registrar_partida(), calcular_winrate() |
 | **JogoCooperativo** | jogadores_max, num_sessoes, participantes_freq | registrar_sessao(participantes: list[str]), adicionar_participantes(nome:str) |
 | **Colecao** | nome_colecao, jogos | adicionar_jogo, remover_jogo(), filtrar_por(), ordenar_por() |
-| **Usuario** | nome, colecoes | criar_colecao, remover_colecao |
+| **Usuario** | nome, colecoes | criar_colecao(), remover_colecao() |
 | **Relatorio** | total_horas, media_nota_jogos, percentual_status, top_5_jogados | gerar_relatorio() |
 
 ---
