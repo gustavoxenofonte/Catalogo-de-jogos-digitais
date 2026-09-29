@@ -5,7 +5,7 @@ class Colecao:
 
     Atributos:
         nome_colecao (str): Nome da coleção
-        jogos: (list[str]): Lista com todos os jogos da coleção
+        jogos: (list[Jogo]): Lista com todos os jogos da coleção
 
     """
     pass
