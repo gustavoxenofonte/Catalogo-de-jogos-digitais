@@ -31,7 +31,7 @@ classDiagram
         -vitorias: int
         -derrotas: int
         -ranking: int
-        -winrate: int
+        -winrate: float
         +registrar_partida()
         +calcular_winrate()
     }
@@ -39,7 +39,7 @@ classDiagram
     class JogoCooperativo {
         -jogadores_max: int
         -num_sessoes: int
-        -participantes_freq: List~str~
+        -participantes_freq: List[str]
         +registrar_sessao(participantes: List[str])
         +adicionar_participante(nome: str)
     }
@@ -120,7 +120,7 @@ classDiagram
 * `- vitorias: int`
 * `- derrotas: int`
 * `- ranking: int`
-* `- winrate: int`
+* `- winrate: float`
 
 ### Métodos
 
