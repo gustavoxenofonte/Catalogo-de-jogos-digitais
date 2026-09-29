@@ -12,7 +12,7 @@ classDiagram
         -nota: float
         -data_inicio: date
         -data_termino: date
-        -ano_lancamento: int
+        -ano_lancamento: date
         +registrar_progresso(horas: float)
         +finalizar_jogo()
         +reiniciar_jogo()
@@ -87,7 +87,7 @@ classDiagram
 - `- nota: float`
 - `- data_inicio: date`
 - `- data_termino: date`
-- `- ano_lancamento: int`
+- `- ano_lancamento: date`
 
 ### Métodos
 

@@ -9,7 +9,7 @@ class Jogo:
         plataforma (str): Plataforma onde está jogando (Ex: Playstation, Xbox, PC)
         horas_jogadas (float): Número de horas jogadas até o momento
         status (str): Não iniciado, jogando, finalizado
-        nota (float): Nota de 0 a 5 estrelas
+        nota (float): Nota de 0 a 10
         data_inicio (date): Data em que o usuário começou o jogo
         data_termino (date): Data em que o usuário terminou o jogo
         ano_lancamento (date): Ano de lançamento oficial do jogo
