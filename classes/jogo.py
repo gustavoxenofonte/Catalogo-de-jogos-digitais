@@ -58,7 +58,10 @@ class Jogo:
 
     @titulo.setter
     def titulo(self, novo_titulo:str):
-        self.__titulo = novo_titulo
+        if isinstance(novo_titulo, str):
+            self.__titulo = novo_titulo
+        else:
+            print("Titulo inválido")
 
     @property
     def genero(self):
@@ -66,7 +69,10 @@ class Jogo:
 
     @genero.setter
     def genero(self, novo_genero:str):
-        self.__genero = novo_genero
+        if isinstance(novo_genero, str):
+            self.__genero = novo_genero
+        else:
+            print("Genero inválido")
 
     @property
     def plataforma(self):
@@ -74,7 +80,10 @@ class Jogo:
 
     @plataforma.setter
     def plataforma(self, nova_plataforma:str):
-        self.__plataforma = nova_plataforma
+        if isinstance(nova_plataforma, str):
+            self.__plataforma = nova_plataforma
+        else:
+            print("Plataforma inválida")
 
     @property
     def nota(self):
@@ -82,7 +91,12 @@ class Jogo:
 
     @nota.setter
     def nota(self, nova_nota):
-        self.__nota = nova_nota
+        if isinstance(nova_nota, (int, float)) and nova_nota >= 0:
+            self.__nota = float(nova_nota)
+        elif isinstance(nova_nota, str) and nova_nota.isdigit() and float(nova_nota) >= 0:
+            self.__nota = float(nova_nota)
+        else:
+            print("Nota inválida")
 
     @property
     def data_inicio(self):
@@ -90,7 +104,10 @@ class Jogo:
 
     @data_inicio.setter
     def data_inicio(self, nova_data_inicio):
-        self.__data_inicio = nova_data_inicio
+        if isinstance(nova_data_inicio, date):
+            self.__data_inicio = nova_data_inicio
+        else:
+            print("Data inválida")
 
     @property
     def data_termino(self):
@@ -98,18 +115,40 @@ class Jogo:
 
     @data_termino.setter
     def data_termino(self, nova_data_termino):
-        self.__data_termino = nova_data_termino
+        if isinstance(nova_data_termino, date):
+            self.__data_termino = nova_data_termino
+        else:
+            print("Data inválida")
 
     def finalizar_jogo(self, data_final: Optional[date] = None, nota: Optional[float] = None):
+
         if data_final == None:
             self.__data_termino = date.today()
+            validacao_data = True
         else:
-            self.__data_termino = data_final
+            if isinstance(data_final, date):
+                self.__data_termino = data_final
+                validacao_data = True
+            else:
+                print("Data inválida")
+                validacao_data = False
 
+        validacao_nota = True
         if nota != None:
-            self.__nota = nota
+            if isinstance(nota, (float, int)) and nota >= 0:
+                self.__nota = float(nota)
+                validacao_nota = True
+            elif isinstance(nota, str) and nota.isdigit() and nota >= 0:
+                self.__nota = nota
+                validacao_nota = True
+            else:
+                print("Nota inválida")
+                validacao_nota = False
 
-        self.__status = "Finalizado"
+        if validacao_data and validacao_nota:
+            self.__status = "Finalizado"
+        else:
+            print("O jogo não foi finalizado")
 
 class JogoCampanha:
     """ Representa um jogo modo campanha (ou modo história)
@@ -166,7 +205,10 @@ class JogoCompetitivo:
         self.__vitorias = vitorias
         self.__derrotas = derrotas
         self.__ranking = ranking
-        self.__winrate = self.__vitorias / self.__partidas_jogadas * 100
+        if self.__partidas_jogadas != 0:
+            self.__winrate = self.__vitorias / self.__partidas_jogadas * 100
+        else:
+            self.__winrate = 0
 
     def __str__(self):
         if self.__ranking == None:
@@ -183,10 +225,10 @@ class JogoCompetitivo:
 
     @partidas_jogadas.setter
     def partidas_jogadas(self, novas_partidas_jogadas):
-        if isinstance(novas_partidas_jogadas, int) and novas_partidas_jogadas > 0:
+        if isinstance(novas_partidas_jogadas, int) and novas_partidas_jogadas >= 0:
             self.__partidas_jogadas = novas_partidas_jogadas
             
-        elif isinstance(novas_partidas_jogadas, str) and novas_partidas_jogadas.isdigit() and novas_partidas_jogadas > 0:
+        elif isinstance(novas_partidas_jogadas, str) and novas_partidas_jogadas.isdigit() and int(novas_partidas_jogadas) >= 0:
             self.__partidas_jogadas = int(novas_partidas_jogadas)
             
         else:
@@ -198,10 +240,10 @@ class JogoCompetitivo:
 
     @vitorias.setter
     def vitorias(self, novas_vitorias):
-        if isinstance(novas_vitorias, int) and novas_vitorias > 0:
+        if isinstance(novas_vitorias, int) and novas_vitorias >= 0:
             self.__vitorias = novas_vitorias
             
-        elif isinstance(novas_vitorias, str) and novas_vitorias.isdigit() and novas_vitorias > 0:
+        elif isinstance(novas_vitorias, str) and novas_vitorias.isdigit() and int(novas_vitorias) >= 0:
             self.__vitorias = int(novas_vitorias)
             
         else:
@@ -213,11 +255,11 @@ class JogoCompetitivo:
 
     @derrotas.setter
     def derrotas(self, novas_derrotas):
-        if isinstance(novas_derrotas, int) and novas_derrotas > 0:
-            self.__derrotas = novas_derrotas
+        if isinstance(novas_derrotas, int) and novas_derrotas >= 0:
+            self.__derrotas = int(novas_derrotas)
 
-        elif isinstance(novas_derrotas, str) and novas_derrotas > 0:
-            self.__derrotas = novas_derrotas
+        elif isinstance(novas_derrotas, str) and novas_derrotas.isdigit() and int(novas_derrotas) >= 0:
+            self.__derrotas = int(novas_derrotas)
 
         else:
             print("Tipo inserido de derrotas é inválido")
@@ -228,11 +270,11 @@ class JogoCompetitivo:
 
     @ranking.setter
     def ranking(self, novo_ranking):
-        if isinstance(novo_ranking, int) and novo_ranking > 0:
-            self.__ranking = novo_ranking
+        if isinstance(novo_ranking, int) and novo_ranking >= 0:
+            self.__ranking = int(novo_ranking)
 
-        elif isinstance(novo_ranking, str) and novo_ranking > 0:
-            self.__ranking = novo_ranking
+        elif isinstance(novo_ranking, str) and novo_ranking.isdigit() and int(novo_ranking) >= 0:
+            self.__ranking = int(novo_ranking)
 
         else:
             print("Tipo inserido de ranking é inválido")
@@ -270,7 +312,7 @@ class JogoCooperativo:
         if isinstance(novo_jogadores_max, int) and novo_jogadores_max > 0:
             self.__jogadores_max = novo_jogadores_max
             
-        elif isinstance(novo_jogadores_max, str) and novo_jogadores_max.isdigit() and novo_jogadores_max > 0:
+        elif isinstance(novo_jogadores_max, str) and novo_jogadores_max.isdigit() and int(novo_jogadores_max) > 0:
             self.__jogadores_max = int(novo_jogadores_max)
             
         else:
@@ -282,10 +324,10 @@ class JogoCooperativo:
 
     @num_sessoes.setter
     def num_sessoes(self, novo_num_sessoes):
-        if isinstance(novo_num_sessoes, int) and novo_num_sessoes > 0:
+        if isinstance(novo_num_sessoes, int) and novo_num_sessoes >= 0:
             self.__num_sessoes = novo_num_sessoes
             
-        elif isinstance(novo_num_sessoes, str) and novo_num_sessoes.isdigit() and novo_num_sessoes > 0:
+        elif isinstance(novo_num_sessoes, str) and novo_num_sessoes.isdigit() and int(novo_num_sessoes) > 0:
             self.__num_sessoes = int(novo_num_sessoes)
             
         else:
