@@ -1,3 +1,6 @@
+from datetime import date
+from typing import Optional
+
 class Jogo:
     """ Representa a classe base para gerenciamento de jogos na coleção.
     
@@ -15,7 +18,94 @@ class Jogo:
         ano_lancamento (date): Ano de lançamento oficial do jogo
     
     """
-    pass
+    def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None):
+        self.__titulo = titulo
+        self.__genero = genero
+        self.__plataforma = plataforma 
+        self.__horas_jogadas = horas_jogadas
+        self.__status = status
+        self.__nota = nota
+        if data_inicio != None:
+            self.__data_inicio = data_inicio
+        else:
+            self.__data_inicio = date.today()
+        self.__data_termino = data_termino # Como quando o usuário adicionar o jogo, a princípio, ele ainda não vai tê-lo zerado, não faz sentido exigir uma data de término do jogo
+        self.__ano_lancamento = ano_lancamento
+
+    def __str__(self):
+        if self.__nota == None:
+            nota_str = "Sem nota"
+        else:
+            nota_str = self.__nota
+        
+        if self.__data_termino == None:
+            data_termino_str = "Jogo ainda não finalizado"
+        else:
+            data_termino_str = self.__data_termino
+
+        return f"Título: {self.__titulo}, Genero: {self.__genero}, Plataforma: {self.__plataforma}\nHoras jogadas: {self.__horas_jogadas}, Status: {self.__status}, Nota: {nota_str}\nData de Início: {self.__data_inicio}, Data de Término: {data_termino_str}, Ano de lançamento: {self.__ano_lancamento}"
+
+    @property
+    def titulo(self):
+        return self.__titulo
+
+    @titulo.setter
+    def titulo(self, novo_titulo:str):
+        self.__titulo = novo_titulo
+
+    @property
+    def genero(self):
+        return self.__genero
+
+    @genero.setter
+    def genero(self, novo_genero:str):
+        self.__genero = novo_genero
+
+    @property
+    def plataforma(self):
+        return self.__plataforma
+
+    @plataforma.setter
+    def plataforma(self, nova_plataforma:str):
+        self.__plataforma = nova_plataforma
+
+    @property
+    def nota(self):
+        return self.__nota
+
+    @nota.setter
+    def nota(self, nova_nota):
+        self.__nota = nova_nota
+
+    @property
+    def data_inicio(self):
+        return self.__data_inicio
+
+    @data_inicio.setter
+    def data_inicio(self, nova_data_inicio):
+        self.__data_inicio = nova_data_inicio
+
+    @property
+    def data_termino(self):
+        if self.__data_termino != None:
+            return self.__data_termino
+        else:
+            raise Exception("Não existe data de término")
+
+    @data_termino.setter
+    def data_termino(self, nova_data_termino):
+        self.__data_termino = nova_data_termino
+
+    def finalizar_jogo(self, data_final: Optional[date] = None, nota: Optional[float] = None):
+        if data_final == None:
+            self.__data_termino = date.today()
+        else:
+            self.__data_termino = data_final
+
+        if nota != None:
+            self.__nota = nota
+
+        self.__status = "Finalizado"
 
 class JogoCampanha:
     """ Representa um jogo modo campanha (ou modo história)
@@ -56,3 +146,4 @@ class JogoCooperativo:
 
     """
     pass
+
