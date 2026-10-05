@@ -129,7 +129,7 @@ class JogoCampanha:
         self.__missoes_totais = missoes_totais
         self.__missoes_concluidas = missoes_concluidas
         if missoes_totais != 0:
-            self.__percentual_conclusao = missoes_concluidas / missoes_totais
+            self.__percentual_conclusao = missoes_concluidas / missoes_totais * 100
         else:
             self.__percentual_conclusao = None 
 
@@ -164,7 +164,81 @@ class JogoCompetitivo:
         ranking (int): Classificação do usuário em relação a outros jogadores
         winrate (float): Taxa de vitória (vitorias / partidas_jogadas)
     """
-    pass
+    def __init__(self, partidas_jogadas: int = 0, vitorias: int = 0, derrotas: int = 0, ranking: int = None):
+        self.__partidas_jogadas = partidas_jogadas
+        self.__vitorias = vitorias
+        self.__derrotas = derrotas
+        self.__ranking = ranking
+        self.__winrate = self.__vitorias / self.__partidas_jogadas * 100
+
+    def __str__(self):
+        if self.__ranking == None:
+            ranking_str = "Sem rank"
+        else:
+            ranking_str = self.__ranking
+
+        return f"Total de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {ranking_str}, Taxa de vitória (winrate): {self.__winrate}%"
+
+
+    @property
+    def partidas_jogadas(self):
+        return self.__partidas_jogadas
+
+    @partidas_jogadas.setter
+    def partidas_jogadas(self, novas_partidas_jogadas):
+        if isinstance(novas_partidas_jogadas, int) and novas_partidas_jogadas > 0:
+            self.__partidas_jogadas = novas_partidas_jogadas
+            
+        elif isinstance(novas_partidas_jogadas, str) and novas_partidas_jogadas.isdigit() and novas_partidas_jogadas > 0:
+            self.__partidas_jogadas = int(novas_partidas_jogadas)
+            
+        else:
+            print("Tipo inserido de novas partidas jogadas é inválido")  
+
+    @property
+    def vitorias(self):
+        return self.__vitorias
+
+    @vitorias.setter
+    def vitorias(self, novas_vitorias):
+        if isinstance(novas_vitorias, int) and novas_vitorias > 0:
+            self.__vitorias = novas_vitorias
+            
+        elif isinstance(novas_vitorias, str) and novas_vitorias.isdigit() and novas_vitorias > 0:
+            self.__vitorias = int(novas_vitorias)
+            
+        else:
+            print("Tipo inserido de vitórias é inválido")
+
+    @property
+    def derrotas(self):
+        return self.__derrotas
+
+    @derrotas.setter
+    def derrotas(self, novas_derrotas):
+        if isinstance(novas_derrotas, int) and novas_derrotas > 0:
+            self.__derrotas = novas_derrotas
+
+        elif isinstance(novas_derrotas, str) and novas_derrotas > 0:
+            self.__derrotas = novas_derrotas
+
+        else:
+            print("Tipo inserido de derrotas é inválido")
+
+    @property
+    def ranking(self):
+        return self.__ranking
+
+    @ranking.setter
+    def ranking(self, novo_ranking):
+        if isinstance(novo_ranking, int) and novo_ranking > 0:
+            self.__ranking = novo_ranking
+
+        elif isinstance(novo_ranking, str) and novo_ranking > 0:
+            self.__ranking = novo_ranking
+
+        else:
+            print("Tipo inserido de ranking é inválido")
 
 class JogoCooperativo:
     """ Representa um jogo cooperativo
