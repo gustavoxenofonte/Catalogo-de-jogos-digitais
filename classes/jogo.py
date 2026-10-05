@@ -125,7 +125,32 @@ class JogoCampanha:
         percentual_conclusao (float): Percentual com base no total de missões e no número de missões concluidas (missoes_concluidas / missoes_totais)
 
     """
-    pass
+    def __init__(self, missoes_totais: int, missoes_concluidas: int = 0):
+        self.__missoes_totais = missoes_totais
+        self.__missoes_concluidas = missoes_concluidas
+        if missoes_totais != 0:
+            self.__percentual_conclusao = missoes_concluidas / missoes_totais
+        else:
+            self.__percentual_conclusao = None 
+
+    def __str__(self):
+        return f"Missões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%"
+
+    @property
+    def missoes_totais(self):
+        return self.__missoes_totais
+
+    @missoes_totais.setter
+    def missoes_totais(self, novas_missoes_totais):
+            self.__missoes_totais = novas_missoes_totais
+
+    @property
+    def missoes_concluidas(self):
+        return self.__missoes_concluidas
+
+    @missoes_concluidas.setter
+    def missoes_concluidas(self, novas_missoes_concluidas):
+        self.__missoes_concluidas = novas_missoes_concluidas
 
 class JogoCompetitivo:
     """ Representa um jogo competitivo
@@ -153,11 +178,3 @@ class JogoCooperativo:
 
     """
     pass
-
-dark_souls = Jogo(titulo="Dark Souls", genero="Souls Like", plataforma="PC", ano_lancamento=2009)
-ds1 = Jogo(titulo="Dark Souls", genero= "Souls Like", plataforma="PC", ano_lancamento=2009)
-
-if dark_souls == ds1:
-    print("É igual")
-else:
-    print("Não é igual")
