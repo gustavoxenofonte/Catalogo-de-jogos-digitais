@@ -45,6 +45,13 @@ class Jogo:
 
         return f"Título: {self.__titulo}, Genero: {self.__genero}, Plataforma: {self.__plataforma}\nHoras jogadas: {self.__horas_jogadas}, Status: {self.__status}, Nota: {nota_str}\nData de Início: {self.__data_inicio}, Data de Término: {data_termino_str}, Ano de lançamento: {self.__ano_lancamento}"
 
+    def __eq__(self, outro: object):
+        if not isinstance(outro, Jogo):
+            return False
+
+        return (self.__titulo.lower() == outro.__titulo.lower() and self.__plataforma.lower() == outro.__plataforma.lower())
+        
+
     @property
     def titulo(self):
         return self.__titulo
@@ -147,3 +154,10 @@ class JogoCooperativo:
     """
     pass
 
+dark_souls = Jogo(titulo="Dark Souls", genero="Souls Like", plataforma="PC", ano_lancamento=2009)
+ds1 = Jogo(titulo="Dark Souls", genero= "Souls Like", plataforma="PC", ano_lancamento=2009)
+
+if dark_souls == ds1:
+    print("É igual")
+else:
+    print("Não é igual")
