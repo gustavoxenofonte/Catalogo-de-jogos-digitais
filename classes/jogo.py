@@ -86,6 +86,32 @@ class Jogo:
             print("Plataforma inválida")
 
     @property
+    def horas_jogadas(self):
+        return self.__horas_jogadas
+
+    @horas_jogadas.setter
+    def horas_jogadas(self, valor: float):
+        if isinstance(valor, (int, float)) and valor >= 0:
+            self.__horas_jogadas = float(valor)
+        else:
+            print("Horas jogadas devem ser maiores ou iguais a 0")
+
+    def adiciona_horas(self, valor:float):
+        if isinstance(valor, (int, float)) and valor > 0:
+            self.__horas_jogadas += valor
+        else:
+            print("Para adicionar horas, o valor deve ser maior que 0")
+
+    def remove_horas(self, valor:float):
+        if isinstance(valor, (int, float)) and valor > 0:
+            if self.__horas_jogadas - valor >= 0:
+                self.__horas_jogadas -= valor
+            else:
+                print("Não é possível remover essa quantidade de horas")
+        else:
+            print("Para remover horas, o valor precisa ser maior que 0")
+
+    @property
     def nota(self):
         return self.__nota
 
