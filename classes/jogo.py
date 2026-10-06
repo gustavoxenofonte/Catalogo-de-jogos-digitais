@@ -139,7 +139,7 @@ class Jogo:
                 self.__nota = float(nota)
                 validacao_nota = True
             elif isinstance(nota, str) and nota.isdigit() and nota >= 0:
-                self.__nota = nota
+                self.__nota = float(nota)
                 validacao_nota = True
             else:
                 print("Nota inválida")
@@ -324,10 +324,10 @@ class JogoCooperativo:
 
     @num_sessoes.setter
     def num_sessoes(self, novo_num_sessoes):
-        if isinstance(novo_num_sessoes, int) and novo_num_sessoes >= 0:
+        if isinstance(novo_num_sessoes, int) and int(novo_num_sessoes) >= 0:
             self.__num_sessoes = novo_num_sessoes
             
-        elif isinstance(novo_num_sessoes, str) and novo_num_sessoes.isdigit() and int(novo_num_sessoes) > 0:
+        elif isinstance(novo_num_sessoes, str) and novo_num_sessoes.isdigit() and int(novo_num_sessoes) >= 0:
             self.__num_sessoes = int(novo_num_sessoes)
             
         else:
