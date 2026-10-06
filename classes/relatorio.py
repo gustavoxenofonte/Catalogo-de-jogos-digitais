@@ -15,4 +15,7 @@ class Relatorio:
         self.__percentual_status = percentual_status
         self.__top_5_jogados = top_5_jogados
 
-    # Por enquanto não adicionei outros métodos pois a classe só funcionará quando se relacionar com outras classes
+    def __str__(self):
+        return f"Total de horas em todas as coleções: {self.__total_horas}, Média da nota em todas as coleções: {self.__media_nota_jogos}\nPercentual de conclusão em todas as coleções: {self.__percentual_status}\nTop 5 mais jogados de todas as coleções: {self.__top_5_jogados}"
+
+    # Fiz somente a base da classe pois ela só funcionará quando se relacionar com outras classes
