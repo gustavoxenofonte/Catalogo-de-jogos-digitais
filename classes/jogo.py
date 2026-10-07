@@ -378,8 +378,3 @@ class JogoCooperativo:
             self.__participantes_freq = nova_lista
         else:
             print("A lista fornecida é inválida")
-
-ds1 = Jogo(titulo="Dark Souls", genero="Action RPG", plataforma="PC", ano_lancamento=2009, horas_jogadas=100, status="Finalizado", nota=10)
-ds3 = Jogo(titulo="Dark Souls 3", genero="Action RPG", plataforma="PC", ano_lancamento=2014, horas_jogadas=67, status="Finalizado" ,nota= 10)
-
-print(repr(ds3))
