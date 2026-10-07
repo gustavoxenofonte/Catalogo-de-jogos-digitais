@@ -45,12 +45,20 @@ class Jogo:
 
         return f"Título: {self.__titulo}, Genero: {self.__genero}, Plataforma: {self.__plataforma}\nHoras jogadas: {self.__horas_jogadas}, Status: {self.__status}, Nota: {nota_str}\nData de Início: {self.__data_inicio}, Data de Término: {data_termino_str}, Ano de lançamento: {self.__ano_lancamento}"
 
+    def __repr__(self):
+        return f"Título: {self.__titulo}, Genero: {self.__genero}, Plataforma: {self.__plataforma}\nHoras jogadas: {self.__horas_jogadas}, Status: {self.__status}, Nota: {self.__nota}\nData de Início: {self.__data_inicio}, Data de Término: {self.__data_termino}, Ano de lançamento: {self.__ano_lancamento}"
+
     def __eq__(self, outro: object):
         if not isinstance(outro, Jogo):
             return False
 
         return (self.__titulo.lower() == outro.__titulo.lower() and self.__plataforma.lower() == outro.__plataforma.lower())
-        
+
+    # Compara horas_jogadas
+    def __lt__(self, outro):
+        if not isinstance(outro, Jogo):
+            return NotImplemented
+        return self.__horas_jogadas < outro.__horas_jogadas
 
     @property
     def titulo(self):
@@ -96,21 +104,6 @@ class Jogo:
         else:
             print("Horas jogadas devem ser maiores ou iguais a 0")
 
-    def adiciona_horas(self, valor:float):
-        if isinstance(valor, (int, float)) and valor > 0:
-            self.__horas_jogadas += valor
-        else:
-            print("Para adicionar horas, o valor deve ser maior que 0")
-
-    def remove_horas(self, valor:float):
-        if isinstance(valor, (int, float)) and valor > 0:
-            if self.__horas_jogadas - valor >= 0:
-                self.__horas_jogadas -= valor
-            else:
-                print("Não é possível remover essa quantidade de horas")
-        else:
-            print("Para remover horas, o valor precisa ser maior que 0")
-
     @property
     def nota(self):
         return self.__nota
@@ -146,11 +139,26 @@ class Jogo:
         else:
             print("Data inválida")
 
-    def finalizar_jogo(self, data_final: Optional[date] = None, nota: Optional[float] = None):
+    def adiciona_horas(self, valor:float):
+            if isinstance(valor, (int, float)) and valor > 0:
+                self.__horas_jogadas += valor
+            else:
+                print("Para adicionar horas, o valor deve ser maior que 0")
+    
+    def remove_horas(self, valor:float):
+        if isinstance(valor, (int, float)) and valor > 0:
+            if self.__horas_jogadas - valor >= 0:
+                self.__horas_jogadas -= valor
+            else:
+                print("Não é possível remover essa quantidade de horas")
+        else:
+            print("Para remover horas, o valor precisa ser maior que 0")
 
+    def finalizar_jogo(self, data_final: Optional[date] = None, nota: Optional[float] = None):
         if data_final == None:
             self.__data_termino = date.today()
             validacao_data = True
+
         else:
             if isinstance(data_final, date):
                 self.__data_termino = data_final
@@ -160,6 +168,7 @@ class Jogo:
                 validacao_data = False
 
         validacao_nota = True
+        
         if nota != None:
             if isinstance(nota, (float, int)) and nota >= 0:
                 self.__nota = float(nota)
@@ -369,3 +378,8 @@ class JogoCooperativo:
             self.__participantes_freq = nova_lista
         else:
             print("A lista fornecida é inválida")
+
+ds1 = Jogo(titulo="Dark Souls", genero="Action RPG", plataforma="PC", ano_lancamento=2009, horas_jogadas=100, status="Finalizado", nota=10)
+ds3 = Jogo(titulo="Dark Souls 3", genero="Action RPG", plataforma="PC", ano_lancamento=2014, horas_jogadas=67, status="Finalizado" ,nota= 10)
+
+print(repr(ds3))
