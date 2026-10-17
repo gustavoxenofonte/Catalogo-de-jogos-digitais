@@ -48,6 +48,7 @@ class Jogo:
     def __repr__(self):
         return f"Título: {self.__titulo}, Genero: {self.__genero}, Plataforma: {self.__plataforma}\nHoras jogadas: {self.__horas_jogadas}, Status: {self.__status}, Nota: {self.__nota}\nData de Início: {self.__data_inicio}, Data de Término: {self.__data_termino}, Ano de lançamento: {self.__ano_lancamento}"
 
+    # Compara título
     def __eq__(self, outro: object):
         if not isinstance(outro, Jogo):
             return False
