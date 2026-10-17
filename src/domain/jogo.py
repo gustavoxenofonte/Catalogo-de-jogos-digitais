@@ -186,7 +186,7 @@ class Jogo:
         else:
             print("O jogo não foi finalizado")
 
-class JogoCampanha:
+class JogoCampanha(Jogo):
     """ Representa um jogo modo campanha (ou modo história)
 
     Herda de Jogo
@@ -197,7 +197,8 @@ class JogoCampanha:
         percentual_conclusao (float): Percentual com base no total de missões e no número de missões concluidas (missoes_concluidas / missoes_totais)
 
     """
-    def __init__(self, missoes_totais: int, missoes_concluidas: int = 0):
+    def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, missoes_totais: int, missoes_concluidas: int = 0, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None):
+        super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
         self.__missoes_totais = missoes_totais
         self.__missoes_concluidas = missoes_concluidas
         if missoes_totais != 0:
@@ -206,7 +207,17 @@ class JogoCampanha:
             self.__percentual_conclusao = None 
 
     def __str__(self):
-        return f"Missões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%"
+        info_jogo = super().__str__()
+
+        info_conclusao = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%" 
+
+        return info_jogo + info_conclusao
+
+    def __repr__(self):
+        info_jogo = super().__repr__()
+        info_campanha = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%"
+
+        return info_jogo + info_campanha
 
     @property
     def missoes_totais(self):
@@ -224,7 +235,7 @@ class JogoCampanha:
     def missoes_concluidas(self, novas_missoes_concluidas):
         self.__missoes_concluidas = novas_missoes_concluidas
 
-class JogoCompetitivo:
+class JogoCompetitivo(Jogo):
     """ Representa um jogo competitivo
 
     Herda de Jogo
@@ -236,7 +247,8 @@ class JogoCompetitivo:
         ranking (int): Classificação do usuário em relação a outros jogadores
         winrate (float): Taxa de vitória (vitorias / partidas_jogadas)
     """
-    def __init__(self, partidas_jogadas: int = 0, vitorias: int = 0, derrotas: int = 0, ranking: int = None):
+    def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None, partidas_jogadas: int = 0, vitorias: int = 0, derrotas: int = 0, ranking: int = None):
+        super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
         self.__partidas_jogadas = partidas_jogadas
         self.__vitorias = vitorias
         self.__derrotas = derrotas
@@ -247,13 +259,21 @@ class JogoCompetitivo:
             self.__winrate = 0
 
     def __str__(self):
+        info_jogo = super().__str__()
         if self.__ranking == None:
             ranking_str = "Sem rank"
         else:
             ranking_str = self.__ranking
 
-        return f"Total de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {ranking_str}, Taxa de vitória (winrate): {self.__winrate}%"
+        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {ranking_str}, Taxa de vitória (winrate): {self.__winrate:.2f}%"
 
+        return info_jogo + info_competitivo
+
+    def __repr__(self):
+        info_jogo = super().__repr__()
+        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {self.__ranking}, Taxa de vitória (winrate): {self.__winrate:.2f}%"
+        
+        return info_jogo + info_competitivo
 
     @property
     def partidas_jogadas(self):
@@ -315,7 +335,7 @@ class JogoCompetitivo:
         else:
             print("Tipo inserido de ranking é inválido")
 
-class JogoCooperativo:
+class JogoCooperativo(Jogo):
     """ Representa um jogo cooperativo
 
     Herda de Jogo
@@ -326,18 +346,29 @@ class JogoCooperativo:
         participantes_freq (List[str]): Lista de jogadores frequentes
 
     """
-    def __init__(self, jogadores_max: int, num_sessoes: int = 0, participantes_freq: list[str] = None):
+    def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, jogadores_max: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None, num_sessoes: int = 0, participantes_freq: list[str] = None):
+            super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
             self.__jogadores_max = jogadores_max
             self.__num_sessoes = num_sessoes
             self.__participantes_freq = participantes_freq
     
     def __str__(self):
+        info_jogo = super().__str__()
+
         if self.__participantes_freq == None:
             participantes_str = "Sem participantes frequentes"
         else:
             participantes_str = self.__participantes_freq
 
-        return f"Máximo de jogadores: {self.__jogadores_max}, Número de sessões: {self.__num_sessoes}\nParticipantes Frequentes: {participantes_str}"
+        info_cooperativo = f"\nMáximo de jogadores: {self.__jogadores_max}, Número de sessões: {self.__num_sessoes}\nParticipantes Frequentes: {participantes_str}"
+
+        return info_jogo + info_cooperativo
+
+    def __repr__(self):
+        info_jogo = super().__repr__()
+        info_cooperativo = f"\nMáximo de jogadores: {self.__jogadores_max}, Número de sessões: {self.__num_sessoes}\nParticipantes Frequentes: {self.__participantes_freq}"
+        
+        return info_jogo + info_cooperativo
 
     @property
     def jogadores_max(self):
