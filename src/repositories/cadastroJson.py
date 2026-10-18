@@ -14,8 +14,8 @@ class CadastroJson:
 
         return [Jogo.from_dict(item) for item in dados]
 
-    def salvar(self, lista_jogos):
-        dados = [item.to_dict() for item in lista_jogos]
+    def salvar(self, usuarios):
+        dados = [item.to_dict() for item in usuarios]
 
         with self.caminho.open("w", encoding="utf-8") as arquivo:
             json.dump(dados, arquivo, ensure_ascii=False, indent=4)

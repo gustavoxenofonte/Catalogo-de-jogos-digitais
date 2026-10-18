@@ -2,3 +2,6 @@ from .jogo import Jogo
 from .jogo_campanha import JogoCampanha
 from .jogo_competitivo import JogoCompetitivo
 from .jogo_cooperativo import JogoCooperativo
+from .colecao import Colecao
+from .relatorio import Relatorio
+from .usuario import Usuario
