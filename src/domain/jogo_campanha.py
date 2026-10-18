@@ -13,6 +13,9 @@ class JogoCampanha(Jogo):
         percentual_conclusao (float): Percentual com base no total de missões e no número de missões concluidas (missoes_concluidas / missoes_totais)
 
     """
+
+    tipo = "Campanha"
+
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, missoes_totais: int, missoes_concluidas: int = 0, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None):
         super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
         self.__missoes_totais = missoes_totais
