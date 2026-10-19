@@ -1,3 +1,5 @@
+from domain import Jogo
+
 class Colecao:
     """ Representa uma coleção do usuário
 
@@ -50,4 +52,10 @@ class Colecao:
             "Jogos": [jogo.to_dict() for jogo in self.__jogos]
         }
 
-    
+    @classmethod
+    def from_dict(cls, dados):
+        jogos = [Jogo.from_dict(j) for j in dados["Jogos"]]
+        return cls(
+            nome_colecao=dados["Nome_colecao"],
+            jogos=jogos
+        )

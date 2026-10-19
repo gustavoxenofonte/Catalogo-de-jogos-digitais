@@ -41,12 +41,7 @@ class Usuario:
 
     @property
     def colecoes(self):
-        if self.__colecoes != None:
-            colecoes_str = self.__colecoes
-        else:
-            colecoes_str = "Sem coleções"
-
-        print(f"Coleções: {colecoes_str}")
+        return f"Coleções: {self.__colecoes}"
 
     @colecoes.setter
     def colecoes(self, outra_colecao: dict[str]): # Fiz somente a base do setter pois pra ele funcionar precisa se relacionar com outras classes
@@ -60,7 +55,11 @@ class Usuario:
 
     @classmethod
     def from_dict(cls, dados):
+        colecoes = {}
+        for i in dados["Colecoes"]:
+            colecao = Colecao.from_dict(i)
+            colecoes[colecao.nome_colecao] = colecao
         return cls(
             nome=dados["Usuario"],
-            colecoes=dados["Colecoes"][0]["Jogos"]
+            colecoes= colecao
         )

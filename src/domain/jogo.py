@@ -165,8 +165,8 @@ class Jogo:
     @classmethod
     def from_dict(cls, dados):
         data_inicio = date.fromisoformat(dados["data_inicio"])
-        if dados["data_inicio"] == None:
-            data_termino = dados["data_inicio"]
+        if dados["data_termino"] == None:
+            data_termino = dados["data_termino"]
         else:
             data_termino = date.fromisoformat(dados["data_termino"])
         return cls(
