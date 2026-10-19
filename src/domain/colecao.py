@@ -36,9 +36,16 @@ class Colecao:
     def jogos(self):
         return self.__jogos
 
+    # Append na lista de jogos
     @jogos.setter
-    def jogos(self, novos_jogos):
-        if isinstance (novos_jogos, list):
-            self.__jogos = novos_jogos
+    def jogos(self, novo_jogo):
+        if isinstance (novo_jogo, object):
+            self.__jogos.append(novo_jogo)
         else:
-            print("Lista de jogos inválida")
+            print("Erro")
+
+    def to_dict(self):
+        return {
+            "Nome_colecao": self.__nome_colecao,
+            "Jogos": [jogo.to_dict() for jogo in self.__jogos]
+        }

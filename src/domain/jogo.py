@@ -18,6 +18,9 @@ class Jogo:
         ano_lancamento (date): Ano de lançamento oficial do jogo
     
     """
+
+    tipo = "Jogo"
+
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None):
         self.__titulo = titulo
         self.__genero = genero
@@ -139,6 +142,39 @@ class Jogo:
             self.__data_termino = nova_data_termino
         else:
             print("Data inválida")
+
+    def to_dict(self):
+        data_inicio_str = self.__data_inicio.strftime("%Y-%m-%d")
+        if self.__data_termino is not None:
+            data_termino_str = self.__data_termino.strftime("%Y-%m-%d")
+        else:
+            data_termino_str = self.__data_termino
+        return {
+            "titulo": self.__titulo,
+            "genero": self.__genero,
+            "plataforma": self.__plataforma,
+            "horas_jogadas": self.__horas_jogadas,
+            "status": self.__status,
+            "nota": self.__nota,
+            "tipo": self.tipo,
+            "data_inicio": data_inicio_str,
+            "data_termino": data_termino_str,
+            "ano_lancamento": self.__ano_lancamento
+        }
+
+    @classmethod
+    def from_dict(cls, dados):
+        return cls(
+            titulo=dados["titulo"],
+            genero=dados["genero"],
+            plataforma=dados["plataforma"],
+            status=dados["status"],
+            nota=dados["nota"],
+            tipo=dados["tipo"],
+            data_inicio=dados["data_inicio"],
+            data_termino=dados["data_termino"],
+            ano_lancamento=dados["ano_lancamento"]
+        )
 
     def adiciona_horas(self, valor:float):
             if isinstance(valor, (int, float)) and valor > 0:

@@ -2,6 +2,8 @@ from .jogo import Jogo
 from datetime import date
 from typing import Optional
 
+tipo = "Cooperativo"
+
 class JogoCooperativo(Jogo):
     """ Representa um jogo cooperativo
 

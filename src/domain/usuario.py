@@ -1,3 +1,5 @@
+from .colecao import Colecao
+
 class Usuario:
     """ Representa o usuário do sistema
 
@@ -8,7 +10,7 @@ class Usuario:
         colecoes (Dict[str, Colecao]): Dicionário com as coleções que o usuário criou. Ele pode criar várias coleções, da maneira que preferir.
 
     """
-    def __init__(self, nome:str, colecoes:dict[str] = None):
+    def __init__(self, nome:str, colecoes:dict = None):
         self.__nome = nome
         self.__colecoes = colecoes
 
@@ -28,7 +30,7 @@ class Usuario:
 
     @property
     def nome(self):
-        return f"Nome: {self.__nome}"
+        return self.__nome
 
     @nome.setter
     def nome(self, outro_nome):
@@ -49,3 +51,16 @@ class Usuario:
     @colecoes.setter
     def colecoes(self, outra_colecao: dict[str]): # Fiz somente a base do setter pois pra ele funcionar precisa se relacionar com outras classes
         self.__colecoes = outra_colecao
+
+    def to_dict(self):
+        return {
+            "Usuario": self.__nome,
+            "Colecoes": [c.to_dict() for c in self.__colecoes.values()],
+        }
+
+    @classmethod
+    def from_dict(cls, dados):
+        return cls(
+            nome=dados["Usuario"],
+            colecoes=dados["Colecoes"][0]["Jogos"]
+        )
