@@ -149,6 +149,7 @@ class Jogo:
             data_termino_str = self.__data_termino.strftime("%Y-%m-%d")
         else:
             data_termino_str = self.__data_termino
+
         return {
             "titulo": self.__titulo,
             "genero": self.__genero,

@@ -112,3 +112,27 @@ class JogoCompetitivo(Jogo):
         dados["derrotas"] = self.__derrotas
         dados["ranking"] = self.__ranking
         return dados
+
+    
+    @classmethod
+    def from_dict(cls, dados):
+        data_inicio = date.fromisoformat(dados["data_inicio"])
+        if dados["data_termino"] == None:
+            data_termino = dados["data_termino"]
+        else:
+            data_termino = date.fromisoformat(dados["data_termino"])
+        return cls(
+            titulo=dados["titulo"],
+            genero=dados["genero"],
+            plataforma=dados["plataforma"],
+            status=dados["status"],
+            nota=dados["nota"],
+            horas_jogadas=dados["horas_jogadas"],
+            data_inicio=data_inicio,
+            data_termino=data_termino,
+            ano_lancamento=dados["ano_lancamento"],
+            partidas_jogadas=dados["partidas_jogadas"],
+            vitorias=dados["vitorias"],
+            derrotas=dados["derrotas"],
+            ranking=dados["ranking"]
+        )

@@ -59,3 +59,24 @@ class JogoCampanha(Jogo):
         dados["missoes_totais"] = self.__missoes_totais
         dados["missoes_concluidas"] = self.__missoes_concluidas
         return dados
+    
+    @classmethod
+    def from_dict(cls, dados):
+        data_inicio = date.fromisoformat(dados["data_inicio"])
+        if dados["data_termino"] == None:
+            data_termino = dados["data_termino"]
+        else:
+            data_termino = date.fromisoformat(dados["data_termino"])
+        return cls(
+            titulo=dados["titulo"],
+            genero=dados["genero"],
+            plataforma=dados["plataforma"],
+            status=dados["status"],
+            nota=dados["nota"],
+            horas_jogadas=dados["horas_jogadas"],
+            data_inicio=data_inicio,
+            data_termino=data_termino,
+            ano_lancamento=dados["ano_lancamento"],
+            missoes_totais=dados["missoes_totais"],
+            missoes_concluidas=dados["missoes_concluidas"]
+        )

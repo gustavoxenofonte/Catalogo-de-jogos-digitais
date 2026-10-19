@@ -12,7 +12,10 @@ class Usuario:
     """
     def __init__(self, nome:str, colecoes:dict = None):
         self.__nome = nome
-        self.__colecoes = colecoes
+        if colecoes is not None:
+            self.__colecoes = colecoes
+        else:
+            self.__colecoes = {}
 
     def __eq__(self, outro_usuario):
         if not isinstance (outro_usuario, Usuario):
@@ -41,7 +44,7 @@ class Usuario:
 
     @property
     def colecoes(self):
-        return f"Coleções: {self.__colecoes}"
+        return self.__colecoes
 
     @colecoes.setter
     def colecoes(self, outra_colecao: dict[str]): # Fiz somente a base do setter pois pra ele funcionar precisa se relacionar com outras classes
@@ -61,5 +64,5 @@ class Usuario:
             colecoes[colecao.nome_colecao] = colecao
         return cls(
             nome=dados["Usuario"],
-            colecoes= colecao
+            colecoes= colecoes
         )

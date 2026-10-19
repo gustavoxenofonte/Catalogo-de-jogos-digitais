@@ -1,4 +1,11 @@
-from domain import Jogo
+from domain import Jogo, JogoCampanha, JogoCooperativo, JogoCompetitivo
+
+tipos = {
+    "Jogo": Jogo,
+    "Campanha": JogoCampanha,
+    "Competitivo": JogoCompetitivo,
+    "Cooperativo": JogoCooperativo,
+}
 
 class Colecao:
     """ Representa uma coleção do usuário
@@ -10,6 +17,7 @@ class Colecao:
         jogos: (list[Jogo]): Lista com todos os jogos da coleção
 
     """
+
     def __init__(self, nome_colecao: str, jogos: list):
         self.__nome_colecao = nome_colecao
         self.__jogos = jogos
@@ -54,7 +62,11 @@ class Colecao:
 
     @classmethod
     def from_dict(cls, dados):
-        jogos = [Jogo.from_dict(j) for j in dados["Jogos"]]
+        jogos = []
+        for j in dados["Jogos"]:
+            classe = tipos[j["tipo"]]
+            jogo = classe.from_dict(j)
+            jogos.append(jogo)  
         return cls(
             nome_colecao=dados["Nome_colecao"],
             jogos=jogos
