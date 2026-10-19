@@ -2,8 +2,6 @@ from .jogo import Jogo
 from datetime import date
 from typing import Optional
 
-tipo = "Cooperativo"
-
 class JogoCooperativo(Jogo):
     """ Representa um jogo cooperativo
 
@@ -15,6 +13,9 @@ class JogoCooperativo(Jogo):
         participantes_freq (List[str]): Lista de jogadores frequentes
 
     """
+
+    tipo = "Cooperativo"
+
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, jogadores_max: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None, num_sessoes: int = 0, participantes_freq: list[str] = None):
             super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
             self.__jogadores_max = jogadores_max

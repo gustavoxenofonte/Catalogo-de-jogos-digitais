@@ -13,12 +13,16 @@ from repositories.cadastroJson import CadastroJson
 
 def gera_relatorio(usuario):
     cadastro = CadastroJson("arquivos.json")
-    if cadastro.procurar_nome(usuario):
+    usuario_encontrado = cadastro.procurar_nome(usuario)
+
+    if usuario_encontrado:
         total_horas = 0
 
-        for i in usuario.horas_jogadas:
-            total_horas += i
+        for i in usuario_encontrado.colecoes:
+            total_horas += i.horas_jogadas
 
         print(f"Total de jogos: {len(usuario.jogos)}\n Total de horas: {total_horas}")
+        return usuario_encontrado
     else:
+        print("Usuario não encontrado")
         return None

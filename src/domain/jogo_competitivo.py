@@ -2,8 +2,6 @@ from .jogo import Jogo
 from datetime import date
 from typing import Optional
 
-tipo = "Competitivo"
-
 class JogoCompetitivo(Jogo):
     """ Representa um jogo competitivo
 
@@ -16,6 +14,9 @@ class JogoCompetitivo(Jogo):
         ranking (int): Classificação do usuário em relação a outros jogadores
         winrate (float): Taxa de vitória (vitorias / partidas_jogadas)
     """
+
+    tipo = "Competitivo"
+
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None, partidas_jogadas: int = 0, vitorias: int = 0, derrotas: int = 0, ranking: int = None):
         super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
         self.__partidas_jogadas = partidas_jogadas
