@@ -30,7 +30,7 @@ class Usuario:
 
     @property
     def nome(self):
-        return f"Nome: {self.__nome}"
+        return self.__nome
 
     @nome.setter
     def nome(self, outro_nome):

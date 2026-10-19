@@ -19,3 +19,17 @@ class CadastroJson:
 
         with self.caminho.open("w", encoding="utf-8") as arquivo:
             json.dump(dados, arquivo, ensure_ascii=False, indent=4)
+
+    def procurar_nome(self, usuario):
+        cadastro = CadastroJson("arquivos.json")
+        dados = cadastro.carregar()
+    
+        nome_encontrado = None
+    
+        for nome in dados:
+            if nome.nome == usuario:
+                nome_encontrado = usuario
+                return nome_encontrado
+        
+        return None
+    

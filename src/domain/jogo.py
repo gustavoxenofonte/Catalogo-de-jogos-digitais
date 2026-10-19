@@ -165,7 +165,7 @@ class Jogo:
     @classmethod
     def from_dict(cls, dados):
         return cls(
-            titulo=dados['titulo'],
+            titulo=dados["titulo"],
             genero=dados["genero"],
             plataforma=dados["plataforma"],
             status=dados["status"],
