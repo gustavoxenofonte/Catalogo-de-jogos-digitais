@@ -53,3 +53,9 @@ class JogoCampanha(Jogo):
     @missoes_concluidas.setter
     def missoes_concluidas(self, novas_missoes_concluidas):
         self.__missoes_concluidas = novas_missoes_concluidas
+
+    def to_dict(self):
+        dados = super().to_dict()
+        dados["missoes_totais"] = self.__missoes_totais
+        dados["missoes_concluidas"] = self.__missoes_concluidas
+        return dados

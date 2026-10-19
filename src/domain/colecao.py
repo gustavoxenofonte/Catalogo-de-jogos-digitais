@@ -49,3 +49,5 @@ class Colecao:
             "Nome_colecao": self.__nome_colecao,
             "Jogos": [jogo.to_dict() for jogo in self.__jogos]
         }
+
+    

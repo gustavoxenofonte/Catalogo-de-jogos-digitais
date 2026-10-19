@@ -80,3 +80,9 @@ class JogoCooperativo(Jogo):
             self.__participantes_freq = nova_lista
         else:
             print("A lista fornecida é inválida")
+
+    def to_dict(self):
+        dados = super().to_dict()
+        dados["jogadores_max"] = self.__jogadores_max
+        dados["num_sessoes"] = self.__num_sessoes
+        dados["participantes_freq"] = self.__participantes_freq

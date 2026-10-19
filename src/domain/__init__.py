@@ -5,3 +5,4 @@ from .jogo_cooperativo import JogoCooperativo
 from .colecao import Colecao
 from .relatorio import Relatorio
 from .usuario import Usuario
+from .gera_relatorio import gera_relatorio

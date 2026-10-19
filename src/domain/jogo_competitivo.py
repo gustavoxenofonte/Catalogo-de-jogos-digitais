@@ -104,3 +104,11 @@ class JogoCompetitivo(Jogo):
 
         else:
             print("Tipo inserido de ranking é inválido")
+
+    def to_dict(self):
+        dados = super().to_dict()
+        dados["partidas_jogadas"] = self.__partidas_jogadas
+        dados["vitorias"] = self.__vitorias
+        dados["derrotas"] = self.__derrotas
+        dados["ranking"] = self.__ranking
+        return dados
