@@ -57,3 +57,10 @@ class Usuario:
             "Usuario": self.__nome,
             "Colecoes": [c.to_dict() for c in self.__colecoes.values()],
         }
+
+    @classmethod
+    def from_dict(cls, dados):
+        return cls(
+            nome=dados["Usuario"],
+            colecoes=dados["Colecoes"][0]["Jogos"]
+        )

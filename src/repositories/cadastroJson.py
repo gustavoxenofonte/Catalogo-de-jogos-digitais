@@ -1,5 +1,5 @@
 from pathlib import Path
-from domain import Jogo, JogoCampanha, JogoCooperativo, JogoCompetitivo
+from domain import Jogo, JogoCampanha, JogoCooperativo, JogoCompetitivo, Usuario
 import json
 
 class CadastroJson:
@@ -12,7 +12,7 @@ class CadastroJson:
         with self.caminho.open("r", encoding="utf-8") as arquivo:
            dados = json.load(arquivo)
 
-        return [Jogo.from_dict(item) for item in dados]
+        return [Usuario.from_dict(item) for item in dados]
 
     def salvar(self, usuarios):
         dados = [item.to_dict() for item in usuarios]
