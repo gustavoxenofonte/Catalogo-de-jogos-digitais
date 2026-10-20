@@ -24,5 +24,5 @@ class Relatorio:
             f"Total de horas: {self.__total_horas:.2f}\n"
             f"Média das notas: {self.__media_nota_jogos:.2f}\n"
             f"Percentual de conclusão: {self.__percentual_status:.2f}%\n"
-            f"Top 5 mais jogados:{top_5_str}"
+            f"Top 5 mais jogados:\n{top_5_str}"
         )

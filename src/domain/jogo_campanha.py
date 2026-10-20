@@ -23,18 +23,18 @@ class JogoCampanha(Jogo):
         if missoes_totais != 0:
             self.__percentual_conclusao = missoes_concluidas / missoes_totais * 100
         else:
-            self.__percentual_conclusao = None 
+            self.__percentual_conclusao = 0
 
     def __str__(self):
         info_jogo = super().__str__()
 
-        info_conclusao = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%" 
+        info_conclusao = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.percentual_conclusao:.2f}%" 
 
         return info_jogo + info_conclusao
 
     def __repr__(self):
         info_jogo = super().__repr__()
-        info_campanha = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.__percentual_conclusao:.2f}%"
+        info_campanha = f"\nMissões Totais: {self.__missoes_totais}, Missões Concluidas: {self.__missoes_concluidas}, Percentual de Conclusão: {self.percentual_conclusao:.2f}%"
 
         return info_jogo + info_campanha
 
@@ -53,6 +53,11 @@ class JogoCampanha(Jogo):
     @missoes_concluidas.setter
     def missoes_concluidas(self, novas_missoes_concluidas):
         self.__missoes_concluidas = novas_missoes_concluidas
+
+    @property
+    def percentual_conclusao(self):
+        self.__percentual_conclusao = self.__missoes_concluidas / self.__missoes_totais * 100
+        return self.__percentual_conclusao
 
     def to_dict(self):
         dados = super().to_dict()

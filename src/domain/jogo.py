@@ -221,10 +221,10 @@ class Jogo:
         validacao_nota = True
         
         if nota != None:
-            if isinstance(nota, (float, int)) and nota >= 0:
+            if isinstance(nota, (float, int)) and float(nota) >= 0:
                 self.__nota = float(nota)
                 validacao_nota = True
-            elif isinstance(nota, str) and nota.isdigit() and nota >= 0:
+            elif isinstance(nota, str) and nota.isdigit() and float(nota) >= 0:
                 self.__nota = float(nota)
                 validacao_nota = True
             else:

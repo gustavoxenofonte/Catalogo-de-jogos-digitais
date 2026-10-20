@@ -37,7 +37,10 @@ def gera_relatorio(usuario):
         if jogo.status == "Finalizado":
             qtd_finalizados += 1
 
-    percentual_finalizados = qtd_finalizados / len(jogos) * 100
+    if len(jogos) != 0:
+        percentual_finalizados = qtd_finalizados / len(jogos) * 100
+    else:
+        percentual_finalizados = 0
 
     jogos_ordenados = sorted(jogos, reverse=True) [:5]
 
