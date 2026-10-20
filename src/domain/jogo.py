@@ -98,6 +98,14 @@ class Jogo:
             print("Plataforma inválida")
 
     @property
+    def status(self):
+        return self.__status
+
+    @status.setter
+    def status(self, outro_status):
+        self.__status = outro_status
+
+    @property
     def horas_jogadas(self):
         return self.__horas_jogadas
 
