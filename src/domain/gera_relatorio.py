@@ -1,5 +1,4 @@
 from .relatorio import Relatorio
-from repositories.cadastroJson import CadastroJson
 
 """ Representa um relatório que usa as informações da coleção e dos jogos
 
@@ -12,13 +11,34 @@ from repositories.cadastroJson import CadastroJson
 """
 
 def gera_relatorio(usuario):
-    cadastro = CadastroJson("arquivos.json")
-    if cadastro.procurar_nome(usuario):
-        total_horas = 0
+    jogos = []
+    for colecao in usuario.colecoes.values():
+        for jogo in colecao.jogos:
+            jogos.append(jogo)
 
-        for i in usuario.horas_jogadas:
-            total_horas += i
+    horas_totais = 0
+    soma_notas = 0
+    total_notas = 0
 
-        print(f"Total de jogos: {len(usuario.jogos)}\n Total de horas: {total_horas}")
-    else:
-        return None
+    for jogo in jogos:
+        horas_totais += jogo.horas_jogadas
+        if jogo.nota is not None:
+            soma_notas += jogo.nota
+            total_notas +=1
+
+    media_notas = 0
+
+    if total_notas > 0:
+        media_notas = soma_notas / total_notas
+
+    qtd_finalizados = 0
+    
+    for jogo in jogos:
+        if jogo.status == "Finalizado":
+            qtd_finalizados += 1
+
+    percentual_finalizados = qtd_finalizados / len(jogos) * 100
+
+    jogos_ordenados = sorted(jogos, reverse=True) [:5]
+
+    return Relatorio(total_horas= horas_totais, media_nota_jogos=media_notas, percentual_status=percentual_finalizados, top_5_jogados= jogos_ordenados)

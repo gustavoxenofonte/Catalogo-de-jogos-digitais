@@ -9,10 +9,12 @@ class CadastroJson:
         self.caminho.parent.mkdir(parents=True, exist_ok=True)
 
     def carregar(self):
-        with self.caminho.open("r", encoding="utf-8") as arquivo:
-           dados = json.load(arquivo)
-
-        return [Usuario.from_dict(item) for item in dados]
+        if self.caminho.exists():
+            with self.caminho.open("r", encoding="utf-8") as arquivo:
+                dados = json.load(arquivo)
+            return [Usuario.from_dict(item) for item in dados]
+        else:
+            return []
 
     def salvar(self, usuarios):
         dados = [item.to_dict() for item in usuarios]
@@ -21,8 +23,7 @@ class CadastroJson:
             json.dump(dados, arquivo, ensure_ascii=False, indent=4)
 
     def procurar_nome(self, usuario):
-        cadastro = CadastroJson("arquivos.json")
-        dados = cadastro.carregar()
+        dados = self.carregar()
     
         nome_encontrado = None
     

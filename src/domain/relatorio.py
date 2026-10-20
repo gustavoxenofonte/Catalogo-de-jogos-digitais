@@ -16,6 +16,13 @@ class Relatorio:
         self.__top_5_jogados = top_5_jogados
 
     def __str__(self):
-        return f"Total de horas em todas as coleções: {self.__total_horas}, Média da nota em todas as coleções: {self.__media_nota_jogos}\nPercentual de conclusão em todas as coleções: {self.__percentual_status}\nTop 5 mais jogados de todas as coleções: {self.__top_5_jogados}"
+        top_5_str = ""
+        for jogo in self.__top_5_jogados:
+            top_5_str += f"{jogo.titulo} ({jogo.horas_jogadas}h)\n"
 
-    # Fiz somente a base da classe pois ela só funcionará quando se relacionar com outras classes
+        return (
+            f"Total de horas: {self.__total_horas:.2f}\n"
+            f"Média das notas: {self.__media_nota_jogos:.2f}\n"
+            f"Percentual de conclusão: {self.__percentual_status:.2f}%\n"
+            f"Top 5 mais jogados:{top_5_str}"
+        )

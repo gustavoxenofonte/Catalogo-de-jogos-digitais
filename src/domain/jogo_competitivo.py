@@ -2,8 +2,6 @@ from .jogo import Jogo
 from datetime import date
 from typing import Optional
 
-tipo = "Competitivo"
-
 class JogoCompetitivo(Jogo):
     """ Representa um jogo competitivo
 
@@ -16,6 +14,9 @@ class JogoCompetitivo(Jogo):
         ranking (int): Classificação do usuário em relação a outros jogadores
         winrate (float): Taxa de vitória (vitorias / partidas_jogadas)
     """
+
+    tipo = "Competitivo"
+
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None, partidas_jogadas: int = 0, vitorias: int = 0, derrotas: int = 0, ranking: int = None):
         super().__init__(titulo, genero, plataforma, ano_lancamento, horas_jogadas, status, nota, data_inicio, data_termino)
         self.__partidas_jogadas = partidas_jogadas
@@ -103,3 +104,35 @@ class JogoCompetitivo(Jogo):
 
         else:
             print("Tipo inserido de ranking é inválido")
+
+    def to_dict(self):
+        dados = super().to_dict()
+        dados["partidas_jogadas"] = self.__partidas_jogadas
+        dados["vitorias"] = self.__vitorias
+        dados["derrotas"] = self.__derrotas
+        dados["ranking"] = self.__ranking
+        return dados
+
+    
+    @classmethod
+    def from_dict(cls, dados):
+        data_inicio = date.fromisoformat(dados["data_inicio"])
+        if dados["data_termino"] == None:
+            data_termino = dados["data_termino"]
+        else:
+            data_termino = date.fromisoformat(dados["data_termino"])
+        return cls(
+            titulo=dados["titulo"],
+            genero=dados["genero"],
+            plataforma=dados["plataforma"],
+            status=dados["status"],
+            nota=dados["nota"],
+            horas_jogadas=dados["horas_jogadas"],
+            data_inicio=data_inicio,
+            data_termino=data_termino,
+            ano_lancamento=dados["ano_lancamento"],
+            partidas_jogadas=dados["partidas_jogadas"],
+            vitorias=dados["vitorias"],
+            derrotas=dados["derrotas"],
+            ranking=dados["ranking"]
+        )

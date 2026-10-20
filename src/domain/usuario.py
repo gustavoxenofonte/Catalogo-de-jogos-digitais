@@ -12,7 +12,10 @@ class Usuario:
     """
     def __init__(self, nome:str, colecoes:dict = None):
         self.__nome = nome
-        self.__colecoes = colecoes
+        if colecoes is not None:
+            self.__colecoes = colecoes
+        else:
+            self.__colecoes = {}
 
     def __eq__(self, outro_usuario):
         if not isinstance (outro_usuario, Usuario):
@@ -41,12 +44,7 @@ class Usuario:
 
     @property
     def colecoes(self):
-        if self.__colecoes != None:
-            colecoes_str = self.__colecoes
-        else:
-            colecoes_str = "Sem coleções"
-
-        print(f"Coleções: {colecoes_str}")
+        return self.__colecoes
 
     @colecoes.setter
     def colecoes(self, outra_colecao: dict[str]): # Fiz somente a base do setter pois pra ele funcionar precisa se relacionar com outras classes
@@ -60,7 +58,11 @@ class Usuario:
 
     @classmethod
     def from_dict(cls, dados):
+        colecoes = {}
+        for i in dados["Colecoes"]:
+            colecao = Colecao.from_dict(i)
+            colecoes[colecao.nome_colecao] = colecao
         return cls(
             nome=dados["Usuario"],
-            colecoes=dados["Colecoes"][0]["Jogos"]
+            colecoes= colecoes
         )

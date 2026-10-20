@@ -98,6 +98,14 @@ class Jogo:
             print("Plataforma inválida")
 
     @property
+    def status(self):
+        return self.__status
+
+    @status.setter
+    def status(self, outro_status):
+        self.__status = outro_status
+
+    @property
     def horas_jogadas(self):
         return self.__horas_jogadas
 
@@ -149,6 +157,7 @@ class Jogo:
             data_termino_str = self.__data_termino.strftime("%Y-%m-%d")
         else:
             data_termino_str = self.__data_termino
+
         return {
             "titulo": self.__titulo,
             "genero": self.__genero,
@@ -164,15 +173,20 @@ class Jogo:
 
     @classmethod
     def from_dict(cls, dados):
+        data_inicio = date.fromisoformat(dados["data_inicio"])
+        if dados["data_termino"] == None:
+            data_termino = dados["data_termino"]
+        else:
+            data_termino = date.fromisoformat(dados["data_termino"])
         return cls(
             titulo=dados["titulo"],
             genero=dados["genero"],
             plataforma=dados["plataforma"],
             status=dados["status"],
             nota=dados["nota"],
-            tipo=dados["tipo"],
-            data_inicio=dados["data_inicio"],
-            data_termino=dados["data_termino"],
+            horas_jogadas=dados["horas_jogadas"],
+            data_inicio=data_inicio,
+            data_termino=data_termino,
             ano_lancamento=dados["ano_lancamento"]
         )
 
