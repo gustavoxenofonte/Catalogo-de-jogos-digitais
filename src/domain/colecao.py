@@ -46,11 +46,10 @@ class Colecao:
     def jogos(self):
         return self.__jogos
 
-    # Append na lista de jogos
     @jogos.setter
     def jogos(self, novo_jogo):
         if isinstance (novo_jogo, object):
-            self.__jogos.append(novo_jogo)
+            self.__jogos = novo_jogo
         else:
             print("Erro")
 

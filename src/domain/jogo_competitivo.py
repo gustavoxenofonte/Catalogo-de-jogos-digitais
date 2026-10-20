@@ -35,13 +35,13 @@ class JogoCompetitivo(Jogo):
         else:
             ranking_str = self.__ranking
 
-        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {ranking_str}, Taxa de vitória (winrate): {self.__winrate:.2f}%"
+        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {ranking_str}, Taxa de vitória (winrate): {self.winrate:.2f}%"
 
         return info_jogo + info_competitivo
 
     def __repr__(self):
         info_jogo = super().__repr__()
-        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {self.__ranking}, Taxa de vitória (winrate): {self.__winrate:.2f}%"
+        info_competitivo = f"\nTotal de partidas: {self.__partidas_jogadas}, Vitórias: {self.__vitorias}, Derrotas: {self.__derrotas}\nRanking: {self.__ranking}, Taxa de vitória (winrate): {self.winrate:.2f}%"
         
         return info_jogo + info_competitivo
 
@@ -105,12 +105,23 @@ class JogoCompetitivo(Jogo):
         else:
             print("Tipo inserido de ranking é inválido")
 
+    @property
+    def winrate(self):
+        if self.__partidas_jogadas != 0:
+            self.__winrate = self.__vitorias / self.__partidas_jogadas * 100
+        else:
+            self.__winrate = 0
+
+        return self.__winrate
+
+
     def to_dict(self):
         dados = super().to_dict()
         dados["partidas_jogadas"] = self.__partidas_jogadas
         dados["vitorias"] = self.__vitorias
         dados["derrotas"] = self.__derrotas
         dados["ranking"] = self.__ranking
+        dados["winrate"] = self.winrate
         return dados
 
     
