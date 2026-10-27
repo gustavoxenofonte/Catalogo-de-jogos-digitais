@@ -1,5 +1,6 @@
 from datetime import date
 from typing import Optional
+from .excecoes import RegraDeNegocioError
 
 class Jogo:
     """ Representa a classe base para gerenciamento de jogos na coleção.
@@ -20,12 +21,16 @@ class Jogo:
     """
 
     tipo = "Jogo"
+    nao_iniciado = "Não iniciado"
+    jogando = "Jogando"
+    finalizado = "Finalizado"
 
     def __init__(self, titulo: str, genero: str, plataforma: str, ano_lancamento: int, horas_jogadas: float = 0, status: str = "Não iniciado", nota: Optional[float] = None, data_inicio: Optional[date] = None, data_termino: Optional[date] = None):
         self.__titulo = titulo
         self.__genero = genero
         self.__plataforma = plataforma 
-        self.__horas_jogadas = horas_jogadas
+        self.__horas_jogadas = 0
+        self.horas_jogadas = horas_jogadas
         self.__status = status
         self.__nota = nota
         if data_inicio != None:
@@ -111,10 +116,12 @@ class Jogo:
 
     @horas_jogadas.setter
     def horas_jogadas(self, valor: float):
-        if isinstance(valor, (int, float)) and valor >= 0:
-            self.__horas_jogadas = float(valor)
-        else:
-            print("Horas jogadas devem ser maiores ou iguais a 0")
+        if not isinstance(valor, (int, float)) or valor < 0:
+            raise RegraDeNegocioError("Horas jogadas devem ser maiores ou iguais a 0.")
+        if valor < self.__horas_jogadas:
+            raise RegraDeNegocioError("As horas só podem aumentar (use adiciona_horas).")
+        self.__horas_jogadas = float(valor)
+
 
     @property
     def nota(self):
@@ -122,12 +129,15 @@ class Jogo:
 
     @nota.setter
     def nota(self, nova_nota):
-        if isinstance(nova_nota, (int, float)) and nova_nota >= 0:
+        if self.__status != Jogo.finalizado:
+            raise RegraDeNegocioError("Só é possível avaliar um jogo depois de finalizado.")
+        
+        if isinstance(nova_nota, (int, float)) and float(nova_nota) >= 0 and float(nova_nota) <= 10:
             self.__nota = float(nova_nota)
-        elif isinstance(nova_nota, str) and nova_nota.isdigit() and float(nova_nota) >= 0:
+        elif isinstance(nova_nota, str) and nova_nota.isdigit() and float(nova_nota) >= 0 and float(nova_nota) <= 10:
             self.__nota = float(nova_nota)
         else:
-            print("Nota inválida")
+            raise RegraDeNegocioError("Nota inválida")
 
     @property
     def data_inicio(self):
@@ -191,21 +201,15 @@ class Jogo:
         )
 
     def adiciona_horas(self, valor:float):
-            if isinstance(valor, (int, float)) and valor > 0:
-                self.__horas_jogadas += valor
-            else:
-                print("Para adicionar horas, o valor deve ser maior que 0")
-    
-    def remove_horas(self, valor:float):
-        if isinstance(valor, (int, float)) and valor > 0:
-            if self.__horas_jogadas - valor >= 0:
-                self.__horas_jogadas -= valor
-            else:
-                print("Não é possível remover essa quantidade de horas")
-        else:
-            print("Para remover horas, o valor precisa ser maior que 0")
+        if not isinstance(valor, (int, float)) or valor <= 0:
+            raise RegraDeNegocioError("Para adicionar horas, o valor deve ser maior que 0.")
+        self.__horas_jogadas += valor
 
     def finalizar_jogo(self, data_final: Optional[date] = None, nota: Optional[float] = None):
+        # A função só é chamada quando finaliza um jogo, antes disso não é possível atribuir nota ao jogo
+        if self.__status == Jogo.finalizado:
+            raise RegraDeNegocioError("Jogo já foi finalizado")
+        
         if data_final == None:
             self.__data_termino = date.today()
             validacao_data = True
@@ -215,16 +219,16 @@ class Jogo:
                 self.__data_termino = data_final
                 validacao_data = True
             else:
-                print("Data inválida")
+                raise RegraDeNegocioError("Data inválida")
                 validacao_data = False
 
         validacao_nota = True
         
         if nota != None:
-            if isinstance(nota, (float, int)) and float(nota) >= 0:
+            if isinstance(nota, (float, int)) and float(nota) >= 0 and float(nota) <= 10:
                 self.__nota = float(nota)
                 validacao_nota = True
-            elif isinstance(nota, str) and nota.isdigit() and float(nota) >= 0:
+            elif isinstance(nota, str) and nota.isdigit() and float(nota) >= 0 and float(nota) <= 10:
                 self.__nota = float(nota)
                 validacao_nota = True
             else:
@@ -232,6 +236,11 @@ class Jogo:
                 validacao_nota = False
 
         if validacao_data and validacao_nota:
-            self.__status = "Finalizado"
+            self.__status = Jogo.finalizado
         else:
-            print("O jogo não foi finalizado")
+            raise RegraDeNegocioError("Jogo não foi finalizado.")
+
+    def iniciar_jogo(self):
+        if self.__status == Jogo.finalizado:
+            raise RegraDeNegocioError("Esse jogo já foi finalizado.")
+        self.__status = Jogo.jogando

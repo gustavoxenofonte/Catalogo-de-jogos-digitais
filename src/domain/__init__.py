@@ -1,3 +1,4 @@
+from .excecoes import RegraDeNegocioError
 from .jogo import Jogo
 from .jogo_campanha import JogoCampanha
 from .jogo_competitivo import JogoCompetitivo
