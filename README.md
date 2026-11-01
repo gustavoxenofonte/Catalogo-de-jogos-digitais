@@ -2,45 +2,55 @@
 
 ## Sumário
 
-* [Descrição do Projeto](https://www.google.com/search?q=%23descri%C3%A7%C3%A3o-do-projeto)
-* [Objetivo do Projeto](https://www.google.com/search?q=%23objetivo-do-projeto)
-* [Funcionalidades](https://www.google.com/search?q=%23funcionalidades)
-* [Instalação e execução](https://www.google.com/search?q=%23instala%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o)
-* [Exemplos de uso](https://www.google.com/search?q=%23exemplos-de-uso)
-* [Configuração](https://www.google.com/search?q=%23configura%C3%A7%C3%A3o)
-* [Persistência dos dados](https://www.google.com/search?q=%23persist%C3%AAncia-dos-dados)
-* [Estrutura Planejada de Classes](https://www.google.com/search?q=%23estrutura-planejada-de-classes)
-* [UML Textual](https://www.google.com/search?q=%23uml-textual)
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Objetivo do Projeto](#objetivo-do-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Instalação e execução](#instalação-e-execução)
+- [Exemplos de uso](#exemplos-de-uso)
+- [Configuração](#configuração)
+- [Persistência dos dados](#persistência-dos-dados)
+- [Estrutura Planejada de Classes](#estrutura-planejada-de-classes)
+- [UML Textual](#uml-textual)
+
 
 ## Descrição do Projeto
 
-* Projeto desenvolvido para a disciplina de **Programação Orientada a Objetos (POO)**
-* O sistema consiste no desenvolvimento de um **catálogo pessoal de jogos digitais** que permite ao usuário organizar sua coleção e acompanhar seu progresso em diferentes tipos de jogos
+- Projeto desenvolvido para a disciplina de **Programação Orientada a Objetos (POO)**
+- O sistema consiste no desenvolvimento de um **catálogo pessoal de jogos digitais** que permite ao usuário organizar sua coleção e acompanhar seu progresso em diferentes tipos de jogos
+
+---
 
 ## Objetivo do Projeto
 
-* Aplicar os conceitos de Programação Orientada a Objetos por meio do desenvolvimento de um sistema de gerenciamento de jogos digitais para aprendizado.
-* O projeto utiliza conceitos como:
-* Classes e objetos
-* Encapsulamento
-* Herança
-* Relacionamento entre classes
-* Atributos e métodos
-* Persistência simples usando JSON
-* Regras de negócio
-* Interface CLI
+- Aplicar os conceitos de Programação Orientada a Objetos por meio do desenvolvimento de um sistema de gerenciamento de jogos digitais para aprendizado.
+
+- O projeto utiliza conceitos como:
+
+    - Classes e objetos
+    - Encapsulamento
+    - Herança
+    - Relacionamento entre classes
+    - Atributos e métodos
+    - Persistência simples usando JSON
+    - Regras de negócio
+    - Interface CLI
+
+---
 
 ## Funcionalidades
 
-* Cadastro de usuários e de coleções (um usuário pode ter várias)
-* Cadastro de jogos de quatro tipos: genérico (jogo), campanha, competitivo e cooperativo
-* Controle de status: `Não iniciado` → `Jogando` → `Finalizado`
-* Registro de horas jogadas e avaliação (nota de 0 a 10) após finalizar
-* Relatório com total de horas, média das notas, percentual de conclusão e top 5 mais jogados
-* Aviso de meta anual de jogos finalizados
-* Dados salvos em arquivo JSON
+- Cadastro de usuários e de coleções (um usuário pode ter várias)
+- Cadastro de jogos de quatro tipos: genérico (jogo), campanha, competitivo e cooperativo
+- Controle de status: `Não iniciado` → `Jogando` → `Finalizado`
+- Registro de horas jogadas e avaliação (nota de 0 a 10) após finalizar
+- Relatório com total de horas, média das notas, percentual de conclusão e top 5 mais jogados
+- Aviso de meta anual de jogos finalizados
+- Dados salvos em arquivo JSON
+
+---
 
 ## Instalação e execução
+
 
 ### Pré-requisitos
 
@@ -64,6 +74,7 @@ cd Catalogo-de-jogos-digitais
 
 Após acessar a pasta do projeto, execute o arquivo principal utilizando o Python:
 
+
 **Importante:** rode sempre a partir da **raiz do projeto** (a pasta que contém `src/`). Os caminhos do `config.json` e do banco JSON são relativos a ela.
 
 ```bash
@@ -86,7 +97,7 @@ python src/main.py adicionar --help
 ### Comandos disponíveis
 
 | Comando | O que faz | Exemplo de uso |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `criar-usuario` | Cria um usuário | `criar-usuario Gustavo` |
 | `criar-colecao` | Cria uma coleção para o usuário | `criar-colecao -u Gustavo Favoritos` |
 | `adicionar` | Adiciona um jogo a uma coleção | `adicionar -u Gustavo -c Favoritos -g Aventura -p Switch -a 2017 Zelda` |
@@ -100,7 +111,7 @@ python src/main.py adicionar --help
 ### Opções principais
 
 | Opção | Usada em | Significado |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `-u`, `--usuario` | todos, exceto `criar-usuario` | Nome do usuário (obrigatório) |
 | `-c`, `--colecao` | `adicionar`, `listar` | Nome da coleção (obrigatório no `adicionar`) |
 | `-g`, `--genero` | `adicionar` | Gênero do jogo (obrigatório) |
@@ -112,6 +123,8 @@ python src/main.py adicionar --help
 | `--nota` | `finalizar` | Nota de 0 a 10 dada na hora de finalizar |
 
 Títulos com espaço precisam de aspas: `"God of War"`.
+
+---
 
 ## Exemplos de uso
 
@@ -198,7 +211,11 @@ Erro: Zelda existe em mais de uma plataforma
 
 $ python src/main.py iniciar -u Gustavo Zelda -p PC    # desempatando com -p
 'Zelda' agora está Jogando.
+
+
 ```
+
+---
 
 ## Configuração
 
@@ -209,11 +226,10 @@ Caso deseje mudar a configuração padrão da meta anual de jogos finalizados e 
     "meta_anual_finalizados": 12,
     "max_jogando_simultaneos": 3
 }
-
 ```
 
 | Chave | Tipo | Descrição |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `meta_anual_finalizados` | inteiro >= 0 ou `null` | Meta de jogos finalizados no ano. Com `null`, o aviso é desativado |
 | `max_jogando_simultaneos` | inteiro >= 1 | Limite de jogos com status `Jogando` ao mesmo tempo |
 
@@ -246,18 +262,20 @@ Os dados ficam em `src/database/arquivos.json`, escritos com `json.dump` e lidos
         ]
     }
 ]
-
 ```
 
 O projeto vem com um arquivos.json com um usuário que serve para demonstração
 
 ## Estrutura Planejada de Classes
 
-* Observação: a estrutura foi planejada na entrega 1, com o andamento do projeto, atributos e métodos mudaram de nome, ou não foram incluídos e outros não listados foram adicionados
-* As classes se encontram na pasta [src/domain](src/domain)
+- Observação: a estrutura foi planejada na entrega 1, com o andamento do projeto, atributos e métodos mudaram de nome, ou não foram incluídos e outros não listados foram adicionados 
+
+- As classes se encontram na pasta [src/domain](src/domain)
+
+---
 
 | Classe | Atributos | Métodos |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | **Jogo** | titulo, genero, plataforma, horas_jogadas, status, nota, data_inicio, data_fim, ano_lancamento | registrar_progresso(), finalizar_jogo(), reiniciar_jogo(), avaliar() |
 | **JogoCampanha** | missoes_totais, missoes_concluidas, percentual_conclusao | atualizar_progresso() |
 | **JogoCompetitivo** | partidas_jogadas, vitorias, derrotas, ranking, winrate | registrar_partida(), calcular_winrate() |
@@ -266,7 +284,9 @@ O projeto vem com um arquivos.json com um usuário que serve para demonstração
 | **Usuario** | nome, colecoes | criar_colecao(), remover_colecao() |
 | **Relatorio** | total_horas, media_nota_jogos, percentual_status, top_5_jogados | gerar_relatorio() |
 
+---
+
 ## UML Textual
 
-* Para melhor organização do README, O UML se encontra no arquivo `UML.md`
-* [Clique aqui para acessá-lo](UML.md)
+- Para melhor organização do README, O UML se encontra no arquivo `UML.md`
+  - [Clique aqui para acessá-lo](UML.md)
