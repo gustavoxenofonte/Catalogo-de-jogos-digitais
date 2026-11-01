@@ -1,0 +1,142 @@
+[
+    {
+        "Usuario": "Demo",
+        "Colecoes": [
+            {
+                "Nome_colecao": "Favoritos",
+                "Jogos": [
+                    {
+                        "titulo": "The Witcher 3",
+                        "genero": "RPG",
+                        "plataforma": "PC",
+                        "horas_jogadas": 120.0,
+                        "status": "Finalizado",
+                        "nota": 10,
+                        "tipo": "Campanha",
+                        "data_inicio": "2026-02-01",
+                        "data_termino": "2026-03-20",
+                        "ano_lancamento": 2015,
+                        "missoes_totais": 50,
+                        "missoes_concluidas": 50
+                    },
+                    {
+                        "titulo": "Hades",
+                        "genero": "Roguelike",
+                        "plataforma": "PC",
+                        "horas_jogadas": 35.0,
+                        "status": "Finalizado",
+                        "nota": 9,
+                        "tipo": "Jogo",
+                        "data_inicio": "2026-04-02",
+                        "data_termino": "2026-05-10",
+                        "ano_lancamento": 2020
+                    },
+                    {
+                        "titulo": "God of War",
+                        "genero": "Ação",
+                        "plataforma": "PS5",
+                        "horas_jogadas": 14.5,
+                        "status": "Jogando",
+                        "nota": null,
+                        "tipo": "Campanha",
+                        "data_inicio": "2026-10-10",
+                        "data_termino": null,
+                        "ano_lancamento": 2018,
+                        "missoes_totais": 20,
+                        "missoes_concluidas": 8
+                    },
+                    {
+                        "titulo": "Zelda",
+                        "genero": "Aventura",
+                        "plataforma": "Switch",
+                        "horas_jogadas": 22.0,
+                        "status": "Jogando",
+                        "nota": null,
+                        "tipo": "Jogo",
+                        "data_inicio": "2026-10-15",
+                        "data_termino": null,
+                        "ano_lancamento": 2017
+                    },
+                    {
+                        "titulo": "Celeste",
+                        "genero": "Plataforma",
+                        "plataforma": "PC",
+                        "horas_jogadas": 8.0,
+                        "status": "Finalizado",
+                        "nota": 8,
+                        "tipo": "Jogo",
+                        "data_inicio": "2025-11-03",
+                        "data_termino": "2025-11-20",
+                        "ano_lancamento": 2018
+                    },
+                    {
+                        "titulo": "Celeste",
+                        "genero": "Plataforma",
+                        "plataforma": "Switch",
+                        "horas_jogadas": 0.0,
+                        "status": "Não iniciado",
+                        "nota": null,
+                        "tipo": "Jogo",
+                        "data_inicio": "2026-10-30",
+                        "data_termino": null,
+                        "ano_lancamento": 2018
+                    }
+                ]
+            },
+            {
+                "Nome_colecao": "Multiplayer",
+                "Jogos": [
+                    {
+                        "titulo": "League of Legends",
+                        "genero": "MOBA",
+                        "plataforma": "PC",
+                        "horas_jogadas": 300.0,
+                        "status": "Jogando",
+                        "nota": null,
+                        "tipo": "Competitivo",
+                        "data_inicio": "2026-01-05",
+                        "data_termino": null,
+                        "ano_lancamento": 2009,
+                        "partidas_jogadas": 250,
+                        "vitorias": 130,
+                        "derrotas": 120,
+                        "ranking": 12,
+                        "winrate": 52.0
+                    },
+                    {
+                        "titulo": "It Takes Two",
+                        "genero": "Aventura",
+                        "plataforma": "PC",
+                        "horas_jogadas": 12.0,
+                        "status": "Finalizado",
+                        "nota": 9,
+                        "tipo": "Cooperativo",
+                        "data_inicio": "2026-08-10",
+                        "data_termino": "2026-08-22",
+                        "ano_lancamento": 2021,
+                        "jogadores_max": 2,
+                        "num_sessoes": 6,
+                        "participantes_freq": [
+                            "Ana"
+                        ]
+                    },
+                    {
+                        "titulo": "Overcooked 2",
+                        "genero": "Party",
+                        "plataforma": "Switch",
+                        "horas_jogadas": 0.0,
+                        "status": "Não iniciado",
+                        "nota": null,
+                        "tipo": "Cooperativo",
+                        "data_inicio": "2026-10-30",
+                        "data_termino": null,
+                        "ano_lancamento": 2018,
+                        "jogadores_max": 4,
+                        "num_sessoes": 0,
+                        "participantes_freq": null
+                    }
+                ]
+            }
+        ]
+    }
+]
