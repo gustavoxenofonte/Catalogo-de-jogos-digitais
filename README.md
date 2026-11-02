@@ -7,6 +7,7 @@
 - [Funcionalidades](#funcionalidades)
 - [Instalação e execução](#instalação-e-execução)
 - [Exemplos de uso](#exemplos-de-uso)
+- [Testes](#testes)
 - [Configuração](#configuração)
 - [Persistência dos dados](#persistência-dos-dados)
 - [Estrutura Planejada de Classes](#estrutura-planejada-de-classes)
@@ -131,35 +132,35 @@ Títulos com espaço precisam de aspas: `"God of War"`.
 Aqui está um exemplo de um fluxo completo do programa. Ele demonstra não só os comandos, mas também as saídas reais.
 
 ```console
-python src/main.py criar-usuario Gustavo
+$ python src/main.py criar-usuario Gustavo
 Usuário 'Gustavo' criado.
 
-python src/main.py criar-colecao -u Gustavo Favoritos
+$ python src/main.py criar-colecao -u Gustavo Favoritos
 Coleção 'Favoritos' criada.
 
-python src/main.py adicionar -u Gustavo -c Favoritos -g Aventura -p Switch -a 2017 Zelda
+$ python src/main.py adicionar -u Gustavo -c Favoritos -g Aventura -p Switch -a 2017 Zelda
 'Zelda' adicionado a 'Favoritos'.
 
-python src/main.py adicionar -u Gustavo -c Favoritos -g Acao -p PS5 -a 2018 -t campanha --missoes-totais 20 "God of War"
+$ python src/main.py adicionar -u Gustavo -c Favoritos -g Acao -p PS5 -a 2018 -t campanha --missoes-totais 20 "God of War"
 'God of War' adicionado a 'Favoritos'.
 
-python src/main.py adicionar -u Gustavo -c Favoritos -g MOBA -p PC -a 2009 -t competitivo LoL
+$ python src/main.py adicionar -u Gustavo -c Favoritos -g MOBA -p PC -a 2009 -t competitivo LoL
 'LoL' adicionado a 'Favoritos'.
 
-python src/main.py adicionar -u Gustavo -c Favoritos -g Co-op -p PC -a 2020 -t cooperativo --jogadores-max 4 "It Takes Two"
+$ python src/main.py adicionar -u Gustavo -c Favoritos -g Co-op -p PC -a 2020 -t cooperativo --jogadores-max 4 "It Takes Two"
 'It Takes Two' adicionado a 'Favoritos'.
 
-python src/main.py iniciar -u Gustavo Zelda
+$ python src/main.py iniciar -u Gustavo Zelda
 'Zelda' agora está Jogando.
 
-python src/main.py horas -u Gustavo Zelda 2.5
+$ python src/main.py horas -u Gustavo Zelda 2.5
 'Zelda': 2.5h jogadas.
 
-python src/main.py finalizar -u Gustavo Zelda --nota 9
+$ python src/main.py finalizar -u Gustavo Zelda --nota 9
 'Zelda' finalizado.
 AVISO: 1 de 12 jogos finalizados em 2026 (faltam 11).
 
-python src/main.py listar -u Gustavo
+$ python src/main.py listar -u Gustavo
 == Favoritos ==
 - Zelda
 Switch
@@ -178,7 +179,7 @@ PC
 0.0h
 Não iniciado
 
-python src/main.py relatorio -u Gustavo
+$ python src/main.py relatorio -u Gustavo
 Total de horas: 2.50
 Média das notas: 9.00
 Percentual de conclusão: 25.00%
@@ -213,6 +214,43 @@ $ python src/main.py iniciar -u Gustavo Zelda -p PC    # desempatando com -p
 'Zelda' agora está Jogando.
 
 
+```
+
+## Testes
+
+Os testes automatizados usam o [`pytest`](https://docs.pytest.org/) e ficam na pasta [`src/tests`](src/tests). Eles cobrem a criação de jogos, a atualização de progresso, as regras de negócio, a persistência e o relatório.
+
+### Como rodar
+
+Instale o `pytest` (só é necessário para os testes):
+
+```bash
+pip install pytest
+```
+
+Na **raiz do projeto** (a pasta que contém `src/`), execute:
+
+```bash
+pytest -q
+```
+
+O arquivo `pytest.ini` já configura o `pythonpath` e a pasta de testes, então não é preciso nenhuma configuração extra. Para rodar só um arquivo ou ver o detalhe de cada teste:
+
+```bash
+pytest -q src/tests/test_jogo.py
+pytest -v
+```
+
+Resultado esperado:
+
+```console
+19 passed in 0.04s
+```
+
+Caso não funcione, teste rodar dessa maneira:
+
+```bash
+python -m pytest -q
 ```
 
 ---
